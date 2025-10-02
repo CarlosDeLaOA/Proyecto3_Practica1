@@ -19,30 +19,5 @@ import java.util.Optional;
 @RestController
 public class AdminController {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @PostMapping
-    @PreAuthorize("hasRole('SUPER_ADMIN')")
-    public User createAdministrator(@RequestBody User newAdminUser) {
-        Optional<Role> optionalRole = roleRepository.findByName(RoleEnum.ADMIN);
-
-        if (optionalRole.isEmpty()) {
-            return null;
-        }
-
-        var user = new User();
-        user.setName(newAdminUser.getName());
-        user.setEmail(newAdminUser.getEmail());
-        user.setPassword(passwordEncoder.encode(newAdminUser.getPassword()));
-        user.setRole(optionalRole.get());
-
-        return userRepository.save(user);
-    }
+   
 }
