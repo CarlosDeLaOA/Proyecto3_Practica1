@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "user")
+@Table(name = "userpractica1")
 @Entity
 public class User implements UserDetails {
     @Id
